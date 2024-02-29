@@ -16,3 +16,5 @@ require('plugins')
 require('base')
 require('highlights')
 require('maps')
+
+vim.cmd("colorscheme kanagawa-dragon")
