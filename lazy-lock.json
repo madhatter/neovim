@@ -1,0 +1,4 @@
+{
+  "command-t": { "branch": "main", "commit": "b8bcea8d40866bfa33a7f7b24979781039bfc76f" },
+  "lazy.nvim": { "branch": "main", "commit": "28126922c9b54e35a192ac415788f202c3944c9f" }
+}
