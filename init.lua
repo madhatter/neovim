@@ -12,9 +12,12 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+require('wincent.commandt').setup()
+
 require('plugins')
 require('base')
 require('highlights')
 require('maps')
 
 vim.cmd("colorscheme kanagawa-dragon")
+

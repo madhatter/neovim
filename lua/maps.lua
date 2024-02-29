@@ -22,6 +22,6 @@ keymap.set('', '<C-w><down>', '<C-w>-')
 keymap.set('', '<C-w><right>', '<C-w>>')
 
 -- Command-T keybindings
-keymap.set('n', '<leader>o <Esc>', ':CommandT<CR>')
-keymap.set('n', '<leader>O <Esc>', ':CommandTFlush<CR>')
-keymap.set('n', '<leader>b <Esc>', ':CommandTBuffer<CR>')
+keymap.set('n', '<Leader>o', ':CommandT<CR>')
+keymap.set('n', '<Leader>O', ':CommandTFlush<CR>')
+keymap.set('n', '<Leader>b', ':CommandTBuffer<CR>')
