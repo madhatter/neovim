@@ -34,3 +34,6 @@ vim.opt.splitright = true -- Put new windows right of current
 vim.opt.splitkeep = "cursor"
 vim.opt.mouse = ""
 vim.opt.modifiable = true
+
+-- change the colorscheme here
+vim.cmd("colorscheme kanagawa-dragon")
