@@ -21,7 +21,7 @@ keymap.set('', '<C-w><up>', '<C-w>+')
 keymap.set('', '<C-w><down>', '<C-w>-')
 keymap.set('', '<C-w><right>', '<C-w>>')
 
--- Command-T keybindings
-keymap.set('n', '<Leader>o', ':CommandT<CR>')
-keymap.set('n', '<Leader>O', ':CommandTFlush<CR>')
-keymap.set('n', '<Leader>b', ':CommandTBuffer<CR>')
+-- fzf-lua keybindings
+keymap.set('n', '<Leader>o', ':FzfLua files<CR>')
+keymap.set('n', '<Leader>h', ':FzfLua oldfiles<CR>')
+keymap.set('n', '<Leader>b', ':FzfLua buffers<CR>')

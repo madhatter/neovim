@@ -13,7 +13,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  "wincent/command-t",
   "rebelot/kanagawa.nvim",
   "nvim-lualine/lualine.nvim",
   {
@@ -30,4 +29,13 @@ require("lazy").setup({
         })
         end,
   },
+  {
+    "ibhagwan/fzf-lua",
+    -- optional for icon support
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      -- calling `setup` is optional for customization
+      require("fzf-lua").setup({})
+    end
+  }
 })
