@@ -13,7 +13,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+  -- Themes --
   "rebelot/kanagawa.nvim",
+  -- Productivity --
   "nvim-lualine/lualine.nvim",
   {
     "nvim-treesitter/nvim-treesitter",
@@ -37,5 +39,15 @@ require("lazy").setup({
       -- calling `setup` is optional for customization
       require("fzf-lua").setup({})
     end
-  }
+  },
+  -- Development --
+  "lewis6991/gitsigns.nvim",
+  "hrsh7th/cmp-nvim-lsp",
+  "hrsh7th/nvim-cmp",
+  "neovim/nvim-lspconfig",
+  "onsails/lspkind-nvim",
+  "quangnguyen30192/cmp-nvim-ultisnips",
+  "williamboman/nvim-lsp-installer",
+  "L3MON4D3/LuaSnip",
+--  "SirVer/ultisnips",
 })

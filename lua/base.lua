@@ -1,4 +1,5 @@
 vim.g.mapleader = ";"
+vim.g.python3_host_prog = "/opt/homebrew/bin/python3"
 
 vim.scriptencoding = "utf-8"
 vim.opt.encoding = "utf-8"
@@ -10,7 +11,7 @@ vim.opt.number = true -- show the line number of the current line
 vim.opt.title = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
-vim.opt.backup = true
+vim.opt.backup = false
 vim.opt.showcmd = true
 vim.opt.cmdheight = 1
 vim.opt.laststatus = 2
