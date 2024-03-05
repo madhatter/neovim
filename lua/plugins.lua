@@ -47,7 +47,7 @@ require("lazy").setup({
   "neovim/nvim-lspconfig",
   "onsails/lspkind-nvim",
   "quangnguyen30192/cmp-nvim-ultisnips",
-  "williamboman/nvim-lsp-installer",
+  "williamboman/mason.nvim",
+  "williamboman/mason-lspconfig.nvim",
   "L3MON4D3/LuaSnip",
---  "SirVer/ultisnips",
 })

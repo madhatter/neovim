@@ -4,11 +4,17 @@ if not cmp_setup then return end
 local lspkind_setup, lspkind = pcall(require, "lspkind")
 if not lspkind_setup then return end
 
+local cmp_nvim_lsp_setup, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if not cmp_nvim_lsp_setup then return end
+
 local lspconfig_setup, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_setup then return end
 
-local cmp_nvim_lsp_setup, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not cmp_nvim_lsp_setup then return end
+local mason_setup, mason = pcall(require, "mason")
+if not mason_setup then return end
+
+local mason_lspc_setup, mason_lspconfig = pcall(require, "mason-lspconfig")
+if not mason_lspc_setup then return end
 
 cmp.setup({
   snippet = {
@@ -57,6 +63,36 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
 end
 
+cmp.setup {
+  formatting = {
+    format = lspkind.cmp_format({
+      mode = "symbol_text",
+      maxwidth = 50,
+
+      before = function(entry, vim_item)
+        return vim_item
+      end
+    })
+  }
+}
+
+-- Mason general setup
+mason.setup {
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+}
+
+-- Mason enxure installation of LSPs
+mason_lspconfig.setup {
+    ensure_installed = { "gopls", "lua_ls","pyright" },
+}
+
+-- Configure LSPs
 lspconfig['gopls'].setup {
   capabilities = capabilities,
   on_attach = on_attach,
@@ -110,16 +146,4 @@ lspconfig['gopls'].setup {
 }
 
 lspconfig['pyright'].setup{}
-
-cmp.setup {
-  formatting = {
-    format = lspkind.cmp_format({
-      mode = "symbol_text",
-      maxwidth = 50,
-
-      before = function(entry, vim_item)
-        return vim_item
-      end
-    })
-  }
-}
+lspconfig['tsserver'].setup{}
