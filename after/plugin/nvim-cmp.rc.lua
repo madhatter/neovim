@@ -89,7 +89,7 @@ mason.setup {
 
 -- Mason enxure installation of LSPs
 mason_lspconfig.setup {
-    ensure_installed = { "gopls", "lua_ls","pyright" },
+    ensure_installed = { "gopls", "lua_ls","pyright", "yamlls" },
 }
 
 -- Configure LSPs
@@ -147,3 +147,35 @@ lspconfig['gopls'].setup {
 
 lspconfig['pyright'].setup{}
 lspconfig['tsserver'].setup{}
+lspconfig['yamlls'].setup {
+    settings = {
+        yaml = {
+            format = {
+                    enable = true,
+            },
+            hover = true,
+            completion = true,
+
+            customTags = {
+                "!fn",
+                "!And",
+                "!If",
+                "!Not",
+                "!Equals",
+                "!Or",
+                "!FindInMap sequence",
+                "!Base64",
+                "!Cidr",
+                "!Ref",
+                "!Ref Scalar",
+                "!Sub",
+                "!GetAtt",
+                "!GetAZs",
+                "!ImportValue",
+                "!Select",
+                "!Split",
+                "!Join sequence"
+            },
+        },
+    },
+}
