@@ -21,6 +21,12 @@ keymap.set('', '<C-w><up>', '<C-w>+')
 keymap.set('', '<C-w><down>', '<C-w>-')
 keymap.set('', '<C-w><right>', '<C-w>>')
 
+-- Navigator settings
+keymap.set('', '<C-h>', ':TmuxNavigateLeft<CR>')
+keymap.set('', '<C-l>', ':TmuxNavigateRight<CR>')
+keymap.set('', '<C-k>', ':TmuxNavigateUp<CR>')
+keymap.set('', '<C-j>', ':TmuxNavigateDown<CR>')
+
 -- fzf-lua keybindings
 keymap.set('n', '<Leader>o', ':FzfLua files<CR>')
 keymap.set('n', '<Leader>h', ':FzfLua oldfiles<CR>')

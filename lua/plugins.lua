@@ -15,6 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   -- Themes --
   "rebelot/kanagawa.nvim",
+  
   -- Productivity --
   "nvim-lualine/lualine.nvim",
   {
@@ -40,6 +41,11 @@ require("lazy").setup({
       require("fzf-lua").setup({})
     end
   },
+  {
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
+  },
+
   -- Development --
   "lewis6991/gitsigns.nvim",
   "hrsh7th/cmp-nvim-lsp",
