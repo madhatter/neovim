@@ -31,3 +31,6 @@ keymap.set('', '<C-j>', ':TmuxNavigateDown<CR>')
 keymap.set('n', '<Leader>o', ':FzfLua files<CR>')
 keymap.set('n', '<Leader>h', ':FzfLua oldfiles<CR>')
 keymap.set('n', '<Leader>b', ':FzfLua buffers<CR>')
+
+-- folding
+keymap.set('n', '<Space>', 'za')

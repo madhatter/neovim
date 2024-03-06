@@ -1,4 +1,3 @@
-vim.g.mapleader = ";"
 vim.g.python3_host_prog = "/opt/homebrew/bin/python3"
 
 vim.scriptencoding = "utf-8"
@@ -50,9 +49,13 @@ vim.opt.wildmode = { "longest", "list" }
 
 -- folding
 -- fold on syntax
-vim.opt.foldmethod = "syntax"
-vim.opt.foldlevelstart = 10
-vim.opt.foldnestmax = 10
+vim.opt.foldmethod = "indent"
+--vim.opt.foldmethod = "expr"
+--vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldlevel = 5
+vim.opt.foldcolumn = "auto:5"
+vim.opt.foldlevelstart = 5
+vim.opt.foldnestmax = 5
 
 vim.opt.tags="tags;/"
 
