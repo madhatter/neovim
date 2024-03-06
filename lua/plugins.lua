@@ -52,7 +52,6 @@ require("lazy").setup({
   "hrsh7th/nvim-cmp",
   "neovim/nvim-lspconfig",
   "onsails/lspkind-nvim",
-  "quangnguyen30192/cmp-nvim-ultisnips",
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
   "L3MON4D3/LuaSnip",
