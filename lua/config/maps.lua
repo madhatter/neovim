@@ -34,3 +34,12 @@ keymap.set('n', '<Leader>b', ':FzfLua buffers<CR>')
 
 -- folding
 keymap.set('n', '<Space>', 'za')
+
+-- move lines in visual mode
+keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- replace the word I'm on
+keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>")
