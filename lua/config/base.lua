@@ -49,8 +49,6 @@ vim.opt.incsearch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
-vim.opt.wildmode = { "longest", "list" }
-
 -- folding
 -- fold on syntax
 vim.opt.foldmethod = "indent"
