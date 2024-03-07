@@ -35,6 +35,16 @@ cmp.setup({
     ["<C-j>"] = require("cmp").mapping.select_next_item(),
     ["<C-k>"] = require("cmp").mapping.select_prev_item(),
   }),
+  formatting = {
+    format = lspkind.cmp_format({
+      mode = "symbol_text",
+      maxwidth = 50,
+
+      before = function(entry, vim_item)
+        return vim_item
+      end
+    })
+  },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
@@ -61,20 +71,11 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+  vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
+  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+  vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+  vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 end
-
-cmp.setup {
-  formatting = {
-    format = lspkind.cmp_format({
-      mode = "symbol_text",
-      maxwidth = 50,
-
-      before = function(entry, vim_item)
-        return vim_item
-      end
-    })
-  }
-}
 
 -- Mason general setup
 mason.setup {
