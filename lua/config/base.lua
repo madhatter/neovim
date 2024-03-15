@@ -54,14 +54,18 @@ opt.smartcase = true
 -- folding
 -- fold on syntax
 opt.foldmethod = "indent"
---vim.opt.foldmethod = "expr"
---vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+--opt.foldmethod = "expr"
+--opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldlevel = 5
 opt.foldcolumn = "auto:5"
 opt.foldlevelstart = 5
 opt.foldnestmax = 5
 
 opt.tags="tags;/"
+
+-- set conceallevel for obsidian plugin
+-- each block of concealed text is replaced with one character
+opt.conceallevel = 1
 
 -- change the colorscheme here
 vim.cmd("colorscheme kanagawa-dragon")
