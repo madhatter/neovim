@@ -147,6 +147,7 @@ lspconfig['gopls'].setup {
 
 lspconfig['pyright'].setup{}
 lspconfig['tsserver'].setup{}
+lspconfig['lua_ls'].setup{}
 lspconfig['yamlls'].setup {
     settings = {
         yaml = {
