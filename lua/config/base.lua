@@ -52,14 +52,10 @@ opt.ignorecase = true
 opt.smartcase = true
 
 -- folding
--- fold on syntax
-opt.foldmethod = "indent"
---opt.foldmethod = "expr"
---opt.foldexpr = "nvim_treesitter#foldexpr()"
-opt.foldlevel = 5
-opt.foldcolumn = "auto:5"
-opt.foldlevelstart = 5
-opt.foldnestmax = 5
+opt.foldcolumn = '1'
+opt.foldlevel = 99
+opt.foldlevelstart = 99
+opt.foldenable = true
 
 opt.tags="tags;/"
 
