@@ -67,5 +67,7 @@ opt.tags="tags;/"
 -- each block of concealed text is replaced with one character
 opt.conceallevel = 1
 
+opt.termguicolors = true
+
 -- change the colorscheme here
 vim.cmd("colorscheme kanagawa-dragon")
