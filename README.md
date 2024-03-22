@@ -19,14 +19,18 @@ You might have to take a look in the docs and wikis of the plugins or call for
 ## Contents
 
 - lazy.nvim
+- alpha-nvim
 - treesitter
 - fzf-lua
 - nvim-lspconfig
 - nvim-cmp
+- cmp-buffer
 - mason
 - mason-lspconfig
 - lualine
 - gitsigns
 - go.nvim
 - guihua.lua
-
+- obsidian.nvim
+- markdown-preview.nvim
+- nvim-ufo
