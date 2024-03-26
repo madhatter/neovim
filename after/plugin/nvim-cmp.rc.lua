@@ -76,6 +76,30 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 end
 
+-- function to enable/disable autocompletion mode of cmp
+function SetAutoCmp(mode)
+  if mode then
+    cmp.setup({
+      completion = {
+        autocomplete = { require('cmp.types').cmp.TriggerEvent.TextChanged }
+      }
+    })
+  else
+    cmp.setup({
+      completion = {
+        autocomplete = false
+      }
+    })
+  end
+end
+SetAutoCmp(true)
+
+-- enable automatic completion popup on typing
+vim.cmd('command AutoCmpOn lua SetAutoCmp(true)')
+-- disable automatic competion popup on typing
+vim.cmd('command AutoCmpOff lua SetAutoCmp(false)')
+
+
 -- Mason general setup
 mason.setup {
     ui = {
