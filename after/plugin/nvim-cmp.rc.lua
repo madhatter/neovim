@@ -170,7 +170,7 @@ lspconfig['gopls'].setup {
 }
 
 lspconfig['pyright'].setup{}
-lspconfig['tsserver'].setup{}
+lspconfig['ts_ls'].setup{}
 lspconfig['lua_ls'].setup{
   settings = {
     Lua = {
