@@ -38,6 +38,7 @@ return {
         yaml = false,
         markdown = true,
         help = false,
+        kotlin = true,
         javascript = true,
         typescript = true,
         golang = true,

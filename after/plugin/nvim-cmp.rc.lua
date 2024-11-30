@@ -114,6 +114,7 @@ mason.setup {
 -- Mason enxure installation of LSPs
 mason_lspconfig.setup {
     ensure_installed = { "gopls", "lua_ls","pyright", "yamlls" },
+    auto_install = true,
 }
 
 -- Configure LSPs
