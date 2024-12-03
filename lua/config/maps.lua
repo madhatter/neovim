@@ -43,3 +43,5 @@ keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>")
+keymap.set("n", "<leader>ms", function() require("myeyeshurt").start() end, {noremap = true, silent = true})
+keymap.set("n", "<leader>mx", function() require("myeyeshurt").stop() end, {noremap = true, silent = true})

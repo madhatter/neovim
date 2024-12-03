@@ -44,4 +44,8 @@ return {
 		  vim.cmd([[autocmd FileType alpha setlocal nofoldenable]])
     end
   },
+  {
+    "wildfunctions/myeyeshurt",
+    opts = {}
+  },
 }
