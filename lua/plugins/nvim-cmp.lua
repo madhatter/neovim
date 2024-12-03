@@ -7,4 +7,10 @@ return {
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
   "L3MON4D3/LuaSnip",
+  {
+      "zbirenbaum/copilot-cmp",
+      config = function()
+          require("copilot_cmp").setup()
+      end,
+  },
 }

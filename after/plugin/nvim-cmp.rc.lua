@@ -39,16 +39,21 @@ cmp.setup({
     format = lspkind.cmp_format({
       mode = "symbol_text",
       maxwidth = 50,
+      symbol_map = { Copilot = "" },
 
       before = function(entry, vim_item)
         return vim_item
-      end
+      end,
+      vim.api.nvim_set_hl(0, "CmpItemKindCopilot", {fg ="#6CC644"})
     })
   },
   sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-    { name = 'buffer' },
+    -- Copilot Source
+    { name = "copilot", group_index = 2 },
+    -- Other sources
+    { name = 'nvim_lsp', group_index = 2 },
+    { name = 'luasnip', group_index = 2 },
+    { name = 'buffer', group_index = 2 },
   })
 })
 
@@ -74,6 +79,11 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
   vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
+  vim.keymap.set("n", "th", function()
+    local enabled = not vim.lsp.inlay_hint.is_enabled({})
+    vim.lsp.inlay_hint.enable(enabled)
+    vim.notify("Inlay hints: " .. (enabled and " on" or "off"))
+  end, { buffer = 0, desc = "Toggle inlay hints" })
 end
 
 -- function to enable/disable autocompletion mode of cmp
