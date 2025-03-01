@@ -123,7 +123,7 @@ mason.setup {
 
 -- Mason enxure installation of LSPs
 mason_lspconfig.setup {
-    ensure_installed = { "gopls", "lua_ls","pyright", "yamlls" },
+    ensure_installed = { "gopls", "lua_ls","pyright", "yamlls", "kotlin_language_server" },
     auto_install = true,
 }
 
@@ -142,7 +142,7 @@ lspconfig['gopls'].setup {
         deepequalerrors = true,
         embed = true,
         errorsas = true,
-        fieldalignment = true,
+      --  fieldalignment = true,
         httpresponse = true,
         ifaceassert = true,
         loopclosure = true,
@@ -188,7 +188,17 @@ lspconfig['gopls'].setup {
     },
   },
 }
-
+lspconfig['kotlin_language_server'].setup{
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    compiler = {
+      jvm = {
+        target = "20"
+      }
+    }
+  }
+}
 lspconfig['pyright'].setup{}
 lspconfig['ts_ls'].setup{}
 lspconfig['lua_ls'].setup{

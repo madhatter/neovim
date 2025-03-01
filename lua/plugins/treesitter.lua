@@ -14,7 +14,8 @@ return {
                           "go",
                           "terraform",
                           "yaml",
-                          "regex"
+                          "regex",
+                          "kotlin",
         },
 
         auto_install = true,
