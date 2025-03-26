@@ -245,3 +245,12 @@ lspconfig['yamlls'].setup {
     },
   },
 }
+lspconfig['clangd'].setup{
+  capabilities = capabilities,
+  on_attach = on_attach,
+  cmd = { "clangd", "--background-index" },
+  filetypes = { "c", "cpp", "objc", "objcpp" },
+  init_options = {
+    clangdFileStatus = true
+  }
+}
