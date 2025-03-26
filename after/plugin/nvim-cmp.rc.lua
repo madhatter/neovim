@@ -17,6 +17,7 @@ local mason_lspc_setup, mason_lspconfig = pcall(require, "mason-lspconfig")
 if not mason_lspc_setup then return end
 
 cmp.setup({
+  preselect = cmp.PreselectMode.None,
   snippet = {
     expand = function(args)
         require('luasnip').lsp_expand(args.body)
@@ -31,7 +32,11 @@ cmp.setup({
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    --['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ["<CR>"] = cmp.mapping.confirm({
+			behavior = cmp.ConfirmBehavior.Insert,
+			select = false,
+		}),
     ["<C-j>"] = require("cmp").mapping.select_next_item(),
     ["<C-k>"] = require("cmp").mapping.select_prev_item(),
   }),
