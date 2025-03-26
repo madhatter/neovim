@@ -32,6 +32,9 @@ keymap.set('n', '<Leader>o', ':FzfLua files<CR>')
 keymap.set('n', '<Leader>h', ':FzfLua oldfiles<CR>')
 keymap.set('n', '<Leader>b', ':FzfLua buffers<CR>')
 
+-- Neotree keybindings
+keymap.set('n', '<F5>', ':Neotree toggle<CR>')
+
 -- folding
 keymap.set('n', '<Space>', 'za')
 
