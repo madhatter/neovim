@@ -13,7 +13,7 @@ keymap.set('n', 'te', ':tabedit<Return>', { silent = true })
 keymap.set('n', 'ss', ':split<Return><C-w>w', { silent = true })
 keymap.set('n', 'sv', ':vsplit<Return><C-w>w', { silent = true })
 -- Close window
-keymap.set('n', '<Leader>c', ':close<CR>')
+--keymap.set('n', '<Leader>c', ':close<CR>')
 
 -- Resize window
 keymap.set('', '<C-w><left>', '<C-w><')
@@ -48,3 +48,6 @@ keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left
 keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>")
 keymap.set("n", "<leader>ms", function() require("myeyeshurt").start() end, {noremap = true, silent = true})
 keymap.set("n", "<leader>mx", function() require("myeyeshurt").stop() end, {noremap = true, silent = true})
+
+-- format JSON
+keymap.set("n", "<leader>J", "<cmd>%!jq '.'<CR>")
