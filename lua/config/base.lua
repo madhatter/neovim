@@ -45,6 +45,9 @@ opt.modifiable = true
 -- make the history longer
 opt.history=500
 
+-- don't show modes
+opt.showmode = false
+
 -- about searching
 opt.hlsearch = true
 opt.incsearch = true
@@ -67,3 +70,5 @@ opt.termguicolors = true
 
 -- change the colorscheme here
 vim.cmd("colorscheme kanagawa-dragon")
+
+opt.clipboard="unnamedplus"
