@@ -36,7 +36,7 @@ keymap.set('n', '<Leader>b', ':FzfLua buffers<CR>')
 keymap.set('n', '<F5>', ':Neotree toggle<CR>')
 
 -- folding
-keymap.set('n', '<Space>', 'za')
+--keymap.set('n', '<Space>', 'za')
 
 -- move lines in visual mode
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")

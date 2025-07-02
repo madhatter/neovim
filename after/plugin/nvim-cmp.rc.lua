@@ -64,32 +64,24 @@ cmp.setup({
 
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
-local on_attach = function(client, bufnr)
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+-- Global LSP mappings
+vim.keymap.set("n", "<space>e", vim.diagnostic.open_float)
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
 
-  -- Mappings.
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', 'gk', vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', 'rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
-  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-  vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-  vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
-  vim.keymap.set("n", "th", function()
-    local enabled = not vim.lsp.inlay_hint.is_enabled({})
-    vim.lsp.inlay_hint.enable(enabled)
-    vim.notify("Inlay hints: " .. (enabled and " on" or "off"))
-  end, { buffer = 0, desc = "Toggle inlay hints" })
-end
+-- More LSP mappings
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+	callback = function(ev)
+		local opts = { buffer = ev.buf }
+		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+		vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
+		vim.keymap.set({ "n", "v" }, "<space>.", vim.lsp.buf.code_action, opts)
+		vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+	end,
+})
 
 -- function to enable/disable autocompletion mode of cmp
 function SetAutoCmp(mode)
