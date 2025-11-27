@@ -37,5 +37,6 @@
   "promise-async": { "branch": "main", "commit": "119e8961014c9bfaf1487bf3c2a393d254f337e2" },
   "vim-test": { "branch": "master", "commit": "2c264d2a5dddb3a7ec927e4359a2b619a8c13a8c" },
   "vim-tmux-navigator": { "branch": "master", "commit": "c45243dc1f32ac6bcf6068e5300f3b2b237e576a" },
-  "vimux": { "branch": "master", "commit": "04f299e53eb81883da0edea6a57018067f3b4938" }
+  "vimux": { "branch": "master", "commit": "04f299e53eb81883da0edea6a57018067f3b4938" },
+  "vscode-diff.nvim": { "branch": "main", "commit": "781a8caa06a115db8bf129409ef374fb5d90f543" }
 }
