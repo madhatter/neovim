@@ -2,6 +2,7 @@ return {
   {
     "esmuellert/codediff.nvim",
     dependencies = { "MunifTanjim/nui.nvim" },
+    cmd = "CodeDiff",
     config = function()
       require("vscode-diff").setup({
         -- Highlight configuration
