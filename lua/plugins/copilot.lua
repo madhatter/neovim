@@ -65,7 +65,7 @@ return {
     opts = {
       show_help = true, -- Show help actions
       window = {
-        layout = "float",
+        layout = "vertical",
       },
       auto_follow_cursor = false,
     },
