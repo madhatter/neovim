@@ -41,6 +41,7 @@ opt.splitright = true -- Put new windows right of current
 opt.splitkeep = "cursor"
 opt.mouse = ""
 opt.modifiable = true
+opt.autoread = true
 
 -- make the history longer
 opt.history=500
