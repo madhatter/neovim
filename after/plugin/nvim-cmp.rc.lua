@@ -37,8 +37,8 @@ cmp.setup({
     documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert({
-    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    -- ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    -- ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
     ["<CR>"] = cmp.mapping.confirm({
@@ -77,14 +77,21 @@ vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
 
 -- More LSP mappings
 vim.api.nvim_create_autocmd("LspAttach", {
-	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-	callback = function(ev)
+  group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+  callback = function(ev)
 		local opts = { buffer = ev.buf }
-		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-		vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
-		vim.keymap.set({ "n", "v" }, "<space>.", vim.lsp.buf.code_action, opts)
-		vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+    -- Goto definition (gd)
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+    -- Hover Documentation (K)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+    -- Rename Symbol (leader+rn)
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+    -- Use of fzf-lua for references (instead of default) - gr
+    vim.keymap.set('n', 'gr', require('fzf-lua').lsp_references, opts)
+    --vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+    -- Code Actions (Für Ruff Fixes etc.) - <leader>ca
+    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+    --vim.keymap.set({ "n", "v" }, "<space>.", vim.lsp.buf.code_action, opts)
 	end,
 })
 
