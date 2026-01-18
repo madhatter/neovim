@@ -131,12 +131,9 @@ mason.setup {
 mason_lspconfig.setup {
     ensure_installed = { "gopls", "lua_ls", "pyright", "yamlls", "kotlin_language_server" },
     auto_install = true,
+    automatic_enable = false
 }
 
--- on_attach function definition
-local on_attach = function(client, bufnr)
-  -- You can add buffer local keymaps/settings here if needed
-end
 
 -- Configure LSPs using new API if available
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -145,182 +142,134 @@ local on_attach = function(client, bufnr)
 end
 
 -- Go (gopls)
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "go",
-  callback = function()
-    vim.lsp.start({
-      name = "gopls",
-      cmd = { "gopls" },
-      root_dir = vim.fs.dirname(vim.fs.find({ "go.mod" }, { upward = true })[1]),
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = {
-        gopls = {
-          analyses = {
-            assign = true,
-            atomic = true,
-            bools = true,
-            composites = true,
-            copylocks = true,
-            deepequalerrors = true,
-            embed = true,
-            errorsas = true,
-            -- fieldalignment = true,
-            httpresponse = true,
-            ifaceassert = true,
-            loopclosure = true,
-            lostcancel = true,
-            nilfunc = true,
-            nilness = true,
-            nonewvars = true,
-            printf = true,
-            shadow = true,
-            shift = true,
-            simplifycompositelit = true,
-            simplifyrange = true,
-            simplifyslice = true,
-            sortslice = true,
-            stdmethods = true,
-            stringintconv = true,
-            structtag = true,
-            testinggoroutine = true,
-            tests = true,
-            timeformat = true,
-            unmarshal = true,
-            unreachable = true,
-            unsafeptr = true,
-            unusedparams = true,
-            unusedresult = true,
-            unusedvariable = true,
-            unusedwrite = true,
-            useany = true,
-          },
-          hints = {
-            assignVariableTypes = true,
-            compositeLiteralFields = true,
-            compositeLiteralTypes = true,
-            constantValues = true,
-            functionTypeParameters = true,
-            parameterNames = true,
-            rangeVariableTypes = true,
-          },
-          hoverKind = "FullDocumentation",
-          linkTarget = "pkg.go.dev",
-          usePlaceholders = true,
-          vulncheck = "Imports",
-        }
+vim.lsp.config('gopls', {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    gopls = {
+      analyses = {
+        assign = true,
+        atomic = true,
+        bools = true,
+        composites = true,
+        copylocks = true,
+        deepequalerrors = true,
+        embed = true,
+        errorsas = true,
+        -- fieldalignment = true,
+        httpresponse = true,
+        ifaceassert = true,
+        loopclosure = true,
+        lostcancel = true,
+        nilfunc = true,
+        nilness = true,
+        nonewvars = true,
+        printf = true,
+        shadow = true,
+        shift = true,
+        simplifycompositelit = true,
+        simplifyrange = true,
+        simplifyslice = true,
+        sortslice = true,
+        stdmethods = true,
+        stringintconv = true,
+        structtag = true,
+        testinggoroutine = true,
+        tests = true,
+        timeformat = true,
+        unmarshal = true,
+        unreachable = true,
+        unsafeptr = true,
+        unusedparams = true,
+        unusedresult = true,
+        unusedvariable = true,
+        unusedwrite = true,
+        useany = true,
       },
-    })
-  end,
+      hints = {
+        assignVariableTypes = true,
+        compositeLiteralFields = true,
+        compositeLiteralTypes = true,
+        constantValues = true,
+        functionTypeParameters = true,
+        parameterNames = true,
+        rangeVariableTypes = true,
+      },
+      hoverKind = "FullDocumentation",
+      linkTarget = "pkg.go.dev",
+      usePlaceholders = true,
+      vulncheck = "Imports",
+    }
+  }
 })
+vim.lsp.enable('gopls')
 
 -- Kotlin (kotlin_language_server)
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "kotlin",
-  callback = function()
-    vim.lsp.start({
-      name = "kotlin_language_server",
-      cmd = {"kotlin-language-server"},
-      root_dir = vim.fs.dirname(vim.fs.find({ "settings.gradle.kts", "settings.gradle" }, { upward = true })[1]),
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = {
-        compiler = {
-          jvm = {
-            target = "20"
-          }
-        }
+vim.lsp.config('kotlin_language_server', {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    compiler = {
+      jvm = {
+        target = "20"
       }
-    })
-  end,
+    }
+  }
 })
+vim.lsp.enable('kotlin_language_server')
 
 -- Python (pyright)
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "python",
-  callback = function()
-    vim.lsp.start({
-      name = "pyright",
-      cmd = {"pyright-langserver", "--stdio"},
-      root_dir = vim.fs.dirname(vim.fs.find({ "pyproject.toml", "setup.py" }, { upward = true })[1]),
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-  end,
+vim.lsp.config('pyright', {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+  }
 })
+vim.lsp.enable('pyright')
 
 -- Typescript (tsserver, falls ts_ls)
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
-  callback = function()
-    vim.lsp.start({
-      name = "tsserver",
-      cmd = {"typescript-language-server", "--stdio"},
-      root_dir = vim.fs.dirname(vim.fs.find({ "package.json", "tsconfig.json" }, { upward = true })[1]),
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-  end,
+vim.lsp.config('tsserver', {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+  }
 })
+vim.lsp.enable('tsserver')
 
 -- Lua (lua_ls)
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "lua",
-  callback = function()
-    vim.lsp.start({
-      name = "lua_ls",
-      cmd = {"lua-language-server"},
-      root_dir = vim.fs.dirname(vim.fs.find({ ".luarc.json", ".luarc.jsonc", "init.lua" }, { upward = true })[1]),
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = {
-        Lua = {
-          diagnostics = { globals = { "vim" } }
-        }
+vim.lsp.config('lua_ls', {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+      Lua = {
+        diagnostics = { globals = { "vim" } }
       }
-    })
-  end,
+  }
 })
+vim.lsp.enable('lua_ls')
 
 -- YAML (yamlls)
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "yaml",
-  callback = function()
-    vim.lsp.start({
-      name = "yamlls",
-      cmd = {"yaml-language-server", "--stdio"},
-      root_dir = vim.fs.dirname(vim.fs.find({ "yarn.lock", "package.json" }, { upward = true })[1]),
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = {
-        yaml = {
-          format = { enable = true },
-          hover = true,
-          completion = true,
-          customTags = {
-            "!fn", "!And", "!If", "!Not", "!Equals", "!Or", "!FindInMap sequence",
-            "!Base64", "!Cidr", "!Ref", "!Ref Scalar", "!Sub", "!GetAtt", "!GetAZs",
-            "!ImportValue", "!Select", "!Split", "!Join sequence"
-          },
-        },
+vim.lsp.config('yamlls', {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    yaml = {
+      format = { enable = true },
+      hover = true,
+      completion = true,
+      customTags = {
+        "!fn", "!And", "!If", "!Not", "!Equals", "!Or", "!FindInMap sequence",
+        "!Base64", "!Cidr", "!Ref", "!Ref Scalar", "!Sub", "!GetAtt", "!GetAZs",
+        "!ImportValue", "!Select", "!Split", "!Join sequence"
       },
-    })
-  end,
+    },
+  }
 })
+vim.lsp.enable('yamlls')
 
 -- C/C++ (clangd)
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "c", "cpp", "objc", "objcpp" },
-  callback = function()
-    vim.lsp.start({
-      name = "clangd",
-      cmd = { "clangd", "--background-index" },
-      capabilities = capabilities,
-      on_attach = on_attach,
-      filetypes = { "c", "cpp", "objc", "objcpp" },
-      init_options = {
-        clangdFileStatus = true
-      }
-    })
-  end,
+vim.lsp.config('clangd', {
+  capabilities = capabilities,
+  on_attach = on_attach,
 })
+vim.lsp.enable('clangd')
