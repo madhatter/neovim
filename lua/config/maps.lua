@@ -51,3 +51,26 @@ keymap.set("n", "<leader>mx", function() require("myeyeshurt").stop() end, {nore
 
 -- format JSON
 keymap.set("n", "<leader>J", "<cmd>%!jq '.'<CR>")
+
+-- Shortcut: <leader>ai opens a vertical split and runs the Gemini CLI in a terminal
+vim.keymap.set("n", "<leader>ai", function()
+vim.cmd("vsplit")
+-- (Optional) Resize the split to a comfortable width
+vim.cmd("vertical resize 50")
+vim.cmd("term gemini")
+
+-- No line numbers and sign column in the terminal buffer
+vim.opt_local.number = false
+vim.opt_local.relativenumber = false
+vim.opt_local.signcolumn = "no"
+-- Enter insert mode automatically
+vim.cmd("startinsert")
+end, { desc = "Open Gemini CLI in Split" })
+-- Exit insert mode
+keymap.set("t", "kk", "<C-\\><C-n>")
+
+-- Terminal navigator settings
+keymap.set('t', '<C-h>', '<C-\\><C-n>:TmuxNavigateLeft<CR>')
+keymap.set('t', '<C-l>', '<C-\\><C-n>:TmuxNavigateRight<CR>')
+keymap.set('t', '<C-k>', '<C-\\><C-n>:TmuxNavigateUp<CR>')
+keymap.set('t', '<C-j>', '<C-\\><C-n>:TmuxNavigateDown<CR>')
