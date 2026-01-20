@@ -4,7 +4,9 @@ vim.g.python3_host_prog = "/opt/homebrew/bin/python3"
 
 vim.scriptencoding = "utf-8"
 opt.encoding = "utf-8"
-opt.fileencoding = "utf-8"
+if vim.bo.modifiable then
+  opt.fileencoding = "utf-8"
+end
 
 opt.relativenumber = true
 opt.number = true -- show the line number of the current line
