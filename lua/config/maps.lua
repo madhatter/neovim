@@ -68,13 +68,7 @@ vim.keymap.set("n", "<leader>ai", function()
 	vim.opt_local.relativenumber = false
 	vim.opt_local.signcolumn = "no"
 	-- Enter insert mode automatically
-	vim.cmd("startinsert")
+	--vim.cmd("startinsert")
 end, { desc = "Open Gemini CLI in Split" })
 -- Exit insert mode
 keymap.set("t", "kk", "<C-\\><C-n>")
-
--- Terminal navigator settings
-keymap.set("t", "<C-h>", "<C-\\><C-n>:TmuxNavigateLeft<CR>")
-keymap.set("t", "<C-l>", "<C-\\><C-n>:TmuxNavigateRight<CR>")
-keymap.set("t", "<C-k>", "<C-\\><C-n>:TmuxNavigateUp<CR>")
-keymap.set("t", "<C-j>", "<C-\\><C-n>:TmuxNavigateDown<CR>")
