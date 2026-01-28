@@ -91,6 +91,7 @@ return {
 		build = "make tiktoken", -- Only on MacOS or Linux
 		opts = {
 			show_help = true, -- Show help actions
+			model = "gpt-5.2",
 			window = {
 				layout = "vertical",
 			},
