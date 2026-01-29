@@ -73,7 +73,7 @@ opt.conceallevel = 1
 opt.clipboard="unnamedplus"
 
 -- change the colorscheme here
-vim.cmd("colorscheme kanagawa-dragon")
+--vim.cmd("colorscheme kanagawa-dragon")
 
 -- Show LSP loading progress
 vim.lsp.handlers['$/progress'] = function(_, progress, ctx)
@@ -90,3 +90,4 @@ vim.lsp.handlers['$/progress'] = function(_, progress, ctx)
     end
   end
 end
+

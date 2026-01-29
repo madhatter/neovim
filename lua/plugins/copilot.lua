@@ -1,23 +1,6 @@
 return {
 	{
-		"copilotlsp-nvim/copilot-lsp",
-		event = "InsertEnter",
-		config = function()
-			require("copilot-lsp").setup({
-				nes = {
-					move_count_threshold = 3, -- Clear after 3 cursor movements
-				},
-			})
-		end,
-	},
-	{
 		"zbirenbaum/copilot.lua",
-		requires = {
-			"copilotlsp-nvim/copilot-lsp",
-			init = function()
-				vim.g.copilot_nes_debounce = 500
-			end,
-		},
 		cmd = "Copilot",
 		event = "InsertEnter",
 		config = function()
@@ -66,16 +49,6 @@ return {
 					svn = false,
 					cvs = false,
 					--["."] = false,
-				},
-				-- next edit suggestions (NES) configuration
-				-- Experimantal.
-				nes = {
-					enabled = true,
-					keymap = {
-						accept_and_goto = "<leader>p",
-						accept = false,
-						dismiss = "<Esc>",
-					},
 				},
 				copilot_node_command = "node", -- Node.js version must be > 18.x
 				server_opts_overrides = {},
