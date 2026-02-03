@@ -24,19 +24,6 @@ if not mason_lspc_setup then
 	return
 end
 
--- Use new lspconfig API if available
-local lspconfig = nil
-if vim.lsp.config ~= nil then
-	lspconfig = vim.lsp.config
-else
-	-- fallback for old versions
-	local ok, lc = pcall(require, "lspconfig")
-	if not ok then
-		return
-	end
-	lspconfig = lc
-end
-
 cmp.setup({
 	preselect = cmp.PreselectMode.None,
 	snippet = {
@@ -92,23 +79,36 @@ cmp.setup({
 
 vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 
-local capabilities = cmp_nvim_lsp.default_capabilities()
+vim.diagnostic.config({
+	float = {
+		border = "rounded",
+		-- Damit zwingen wir JEDES Diagnostic-Popup in dein Theme
+		style = "minimal",
+		header = "",
+		prefix = "",
+		-- Auch hier: NormalFloat ist der Schlüssel für den Hintergrund
+		winhighlight = "Normal:Pmenu,FloatBorder:FloatBorder,CursorLine:PmenuSel,NormalFloat:Pmenu",
+	},
+})
 
 -- Global LSP mappings
-vim.keymap.set("n", "<space>e", vim.diagnostic.open_float)
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
-vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
-
--- More LSP mappings
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 	callback = function(ev)
 		local opts = { buffer = ev.buf }
+		local function open_styled_float(float_func)
+			float_func({
+				border = "rounded",
+				winhighlight = "Normal:Pmenu,FloatBorder:FloatBorder,CursorLine:PmenuSel,NormalFloat:Pmenu",
+			})
+		end
 		-- Goto definition (gd)
 		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 		-- Hover Documentation (K)
-		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+		--vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+		vim.keymap.set("n", "K", function()
+			open_styled_float(vim.lsp.buf.hover)
+		end, opts)
 		-- Rename Symbol (leader+rn)
 		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
 		-- Use of fzf-lua for references (instead of default) - gr
@@ -117,6 +117,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		-- Code Actions (Für Ruff Fixes etc.) - <leader>ca
 		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 		--vim.keymap.set({ "n", "v" }, "<space>.", vim.lsp.buf.code_action, opts)
+		vim.keymap.set("n", "<space>e", function()
+			open_styled_float(vim.lsp.buf.hover)
+		end, opts)
+		vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
+		vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+		vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
 	end,
 })
 
@@ -162,7 +168,7 @@ mason_lspconfig.setup({
 -- Configure LSPs using new API if available
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local on_attach = function(client, bufnr)
-	-- (deine eigenen Mappings und andere Logik)
+	-- custom on_attach function can be added here
 end
 
 -- Go (gopls)
