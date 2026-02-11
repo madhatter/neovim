@@ -21,3 +21,10 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
   group = format_sync_grp,
 })
+
+-- Use yaml.ansible for yaml files in ansible directory
+vim.filetype.add({
+  pattern = {
+    [".*/ansible/.*/*%.ya?ml"] = "yaml.ansible",
+  },
+})

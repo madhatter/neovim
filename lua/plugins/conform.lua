@@ -28,6 +28,7 @@ return {
 				-- Conform will run the first available formatter
 				javascript = { "prettierd", "prettier", stop_after_first = true },
 				go = { "gofmt" },
+        ["yaml.ansible"] = { "yamlfmt" },
 				-- Use the "*" filetype to run formatters on all files
 				-- "trim_whitespace" removes trailing whitespace
 				["*"] = { "trim_whitespace" },

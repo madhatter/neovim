@@ -184,8 +184,17 @@ local lsp_servers = {
 	pyright = {
 		settings = {},
 	},
-	tsserver = {
+	ts_ls = {
 		settings = {},
+	},
+	ansiblels = {
+		settings = {
+			ansible = {
+				ansibleLint = {
+					enabled = true,
+				},
+			},
+		},
 	},
 	lua_ls = {
 		settings = {
@@ -230,8 +239,11 @@ local lsp_servers = {
 
 -- Configure and enable all LSP servers
 for server, config in pairs(lsp_servers) do
-	vim.lsp.config(server, vim.tbl_extend("force", {
-		capabilities = capabilities,
-	}, config))
+	vim.lsp.config(
+		server,
+		vim.tbl_extend("force", {
+			capabilities = capabilities,
+		}, config)
+	)
 	vim.lsp.enable(server)
 end
