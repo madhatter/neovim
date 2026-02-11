@@ -7,7 +7,13 @@ return {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
 			-- calling `setup` is optional for customization
-			require("fzf-lua").setup({})
+			require("fzf-lua").setup({
+				files = {
+					actions = {
+						["ctrl-g"] = require("fzf-lua").actions.toggle_ignore,
+					},
+				},
+			})
 			require("fzf-lua").register_ui_select()
 		end,
 	},
