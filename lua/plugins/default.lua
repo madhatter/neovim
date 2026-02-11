@@ -16,4 +16,5 @@ return {
 		lazy = false,
 	},
 	"eandrju/cellular-automaton.nvim",
+	{ "wakatime/vim-wakatime", lazy = false },
 }
