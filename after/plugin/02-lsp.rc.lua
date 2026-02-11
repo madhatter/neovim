@@ -40,27 +40,45 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		local opts = { buffer = ev.buf }
 
 		-- Navigation
-		vim.keymap.set("n", "gd", require("fzf-lua").lsp_definitions,
+		vim.keymap.set(
+			"n",
+			"gd",
+			require("fzf-lua").lsp_definitions,
 			vim.tbl_extend("force", opts, { desc = "Definition" })
 		)
-		vim.keymap.set("n", "gD", require("fzf-lua").lsp_declarations,
+		vim.keymap.set(
+			"n",
+			"gD",
+			require("fzf-lua").lsp_declarations,
 			vim.tbl_extend("force", opts, { desc = "Declaration" })
 		)
-		vim.keymap.set("n", "gi", require("fzf-lua").lsp_implementations,
+		vim.keymap.set(
+			"n",
+			"gi",
+			require("fzf-lua").lsp_implementations,
 			vim.tbl_extend("force", opts, { desc = "Implementation" })
 		)
 		vim.keymap.set("n", "gr", require("fzf-lua").lsp_references, opts)
-		vim.keymap.set("n", "gy", require("fzf-lua").lsp_typedefs,
+		vim.keymap.set(
+			"n",
+			"gy",
+			require("fzf-lua").lsp_typedefs,
 			vim.tbl_extend("force", opts, { desc = "Type definition" })
 		)
 
 		-- Documentation
 		vim.keymap.set("n", "K", open_styled_float(vim.lsp.buf.hover), opts)
 		vim.keymap.set("n", "<space>e", open_styled_float(vim.lsp.buf.hover), opts)
-		vim.keymap.set("n", "<leader>ds", require("fzf-lua").lsp_document_symbols,
+		vim.keymap.set(
+			"n",
+			"<leader>ds",
+			require("fzf-lua").lsp_document_symbols,
 			vim.tbl_extend("force", opts, { desc = "Document symbols" })
 		)
-		vim.keymap.set("n", "<leader>ws", require("fzf-lua").lsp_workspace_symbols,
+		vim.keymap.set(
+			"n",
+			"<leader>ws",
+			require("fzf-lua").lsp_workspace_symbols,
 			vim.tbl_extend("force", opts, { desc = "Workspace symbols" })
 		)
 
@@ -73,10 +91,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		-- Diagnostics
 		vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 		vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-		vim.keymap.set("n", "<leader>dd", require("fzf-lua").diagnostics_document,
+		vim.keymap.set(
+			"n",
+			"<leader>dd",
+			require("fzf-lua").diagnostics_document,
 			vim.tbl_extend("force", opts, { desc = "Diagnostics (buffer)" })
 		)
-		vim.keymap.set("n", "<leader>dD", require("fzf-lua").diagnostics_workspace,
+		vim.keymap.set(
+			"n",
+			"<leader>dD",
+			require("fzf-lua").diagnostics_workspace,
 			vim.tbl_extend("force", opts, { desc = "Diagnostics (workspace)" })
 		)
 		vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
