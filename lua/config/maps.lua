@@ -1,5 +1,9 @@
 local keymap = vim.keymap
 
+-- Translate the raw escape sequence from Alacritty back to <C-;> inside Neovim.
+-- We use `remap = true` so that this mapping triggers your OTHER <C-;> mapping (the plugin toggle).
+vim.keymap.set({ "n", "t", "i" }, "<Esc>[59;5u", "<C-;>", { remap = true })
+
 -- Do not yank with x
 keymap.set("n", "x", '"_x')
 

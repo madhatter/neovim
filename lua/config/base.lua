@@ -69,9 +69,6 @@ opt.tags="tags;/"
 -- each block of concealed text is replaced with one character
 opt.conceallevel = 1
 
--- use the system clipboard
-opt.clipboard="unnamedplus"
-
 -- change the colorscheme here
 --vim.cmd("colorscheme kanagawa-dragon")
 
