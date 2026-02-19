@@ -7,7 +7,12 @@ lualine.setup {
         theme = 'palenight',
         section_separators = { left = '', right = '' },
         component_separators = { left = '', right = '' },
-        disabled_filetypes = {}
+        disabled_filetypes = {},
+        refresh = {
+            statusline = 1000, -- increased from default for less CPU usage
+            tabline = 1000,
+            winbar = 1000,
+         }
     },
     sections = {
         lualine_a = { 'mode' },
