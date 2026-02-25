@@ -1,7 +1,20 @@
-vim.g.mapleader = ";"
+-- when running `nvim my/folder` sets cwd to be my/folder
+-- https://www.reddit.com/r/neovim/comments/t26htu/comment/hynjpru/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+IS_OPENED_TO_DIR = vim.fn.isdirectory(vim.v.argv[3]) == 1
+if IS_OPENED_TO_DIR then
+  vim.api.nvim_set_current_dir(vim.v.argv[3])
+end
+-- Watch directory for changes if opened to a directory
+if IS_OPENED_TO_DIR then
+  require('custom.directory-watcher').setup {
+    path = vim.fn.getcwd(),
+    debounce = 100,
+  }
+end
 
-require('config/lazy')
 require('config/base')
+require 'custom.hotreload'
 require('config/highlights')
 require('config/maps')
 require('config/autocmd')
+require('config/lazy')
