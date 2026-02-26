@@ -1,7 +1,6 @@
 local opt = vim.opt
 
 vim.g.mapleader = ";"
-vim.g.python3_host_prog = "/opt/homebrew/bin/python3"
 
 vim.scriptencoding = "utf-8"
 opt.encoding = "utf-8"
