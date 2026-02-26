@@ -8,9 +8,25 @@ return {
 		config = function()
 			-- calling `setup` is optional for customization
 			require("fzf-lua").setup({
+				winopts = {
+					preview = {
+						wrap = "nowrap",
+					},
+				},
 				files = {
 					actions = {
 						["ctrl-g"] = require("fzf-lua").actions.toggle_ignore,
+					},
+				},
+				previewers = {
+					builtin = {
+						extensions = {
+							["parquet"] = {
+								"sh", "-c",
+								[[duckdb -noheader -column -c "SELECT * FROM read_parquet('$1') LIMIT 100;" | cut -c1-120]],
+								"sh",
+							},
+						},
 					},
 				},
 			})
