@@ -18,6 +18,11 @@ return {
 			},
 		},
 		opts = {
+			formatters = {
+				sqlfluff = {
+					args = { "fix", "--FIX-EVEN-UNPARSABLE", "--dialect", "athena", "-" },
+				},
+			},
 			formatters_by_ft = {
 				-- Define which formatters to use for specific filetypes
 				lua = { "stylua" },
@@ -32,6 +37,7 @@ return {
 				terraform = { "terraform_fmt" },
 				tf = { "terraform_fmt" },
 				["terraform-vars"] = { "terraform_fmt" },
+				sql = { "sqlfluff" },
 				["yaml.ansible"] = { "yamlfmt" },
 				-- Use the "*" filetype to run formatters on all files
 				-- "trim_whitespace" removes trailing whitespace
