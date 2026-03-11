@@ -17,12 +17,20 @@ return {
 					actions = {
 						["ctrl-g"] = require("fzf-lua").actions.toggle_ignore,
 					},
+					-- Ensure fd and rg don't colorize output, follow symlinks, and exclude .git and node_modules directories
+					fd_opts = "--color=never --type f --hidden --follow --exclude .git --exclude node_modules",
+					rg_opts = "--color=never --files --hidden --follow --glob '!.git/*' --glob '!node_modules/*'",
+				},
+				grep = {
+					-- Ensure live grep doesn't truncate long lines and that it shows line numbers and file names
+					rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 --follow -e",
 				},
 				previewers = {
 					builtin = {
 						extensions = {
 							["parquet"] = {
-								"sh", "-c",
+								"sh",
+								"-c",
 								[[duckdb -noheader -column -c "SELECT * FROM read_parquet('$1') LIMIT 100;" | cut -c1-120]],
 								"sh",
 							},

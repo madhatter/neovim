@@ -1,4 +1,6 @@
 local keymap = vim.keymap
+local yank = require 'custom.yank'
+
 
 -- Translate the raw escape sequence from Alacritty back to <C-;> inside Neovim.
 -- We use `remap = true` so that this mapping triggers your OTHER <C-;> mapping (the plugin toggle).
@@ -35,6 +37,7 @@ keymap.set("", "<C-j>", ":TmuxNavigateDown<CR>")
 keymap.set("n", "<Leader>o", ":FzfLua files<CR>")
 keymap.set("n", "<Leader>h", ":FzfLua oldfiles<CR>")
 keymap.set("n", "<Leader>b", ":FzfLua buffers<CR>")
+keymap.set("n", "<Leader>f", ":FzfLua live_grep<CR>")
 
 -- Neotree keybindings
 keymap.set("n", "<F5>", ":Neotree toggle<CR>")
@@ -64,7 +67,7 @@ keymap.set("n", "<leader>J", "<cmd>%!jq '.'<CR>")
 vim.keymap.set("n", "<leader>ai", function()
 	vim.cmd("vsplit")
 	-- (Optional) Resize the split to a comfortable width
-	vim.cmd("vertical resize 50")
+	--vim.cmd("vertical resize 50")
 	vim.cmd("term gemini")
 
 	-- No line numbers and sign column in the terminal buffer
@@ -74,5 +77,32 @@ vim.keymap.set("n", "<leader>ai", function()
 	-- Enter insert mode automatically
 	--vim.cmd("startinsert")
 end, { desc = "Open Gemini CLI in Split" })
--- Exit insert mode
+
+vim.keymap.set('n', '<leader>ac', function()
+  vim.cmd('vsplit | term claude')
+
+	vim.opt_local.number = false
+	vim.opt_local.relativenumber = false
+	vim.opt_local.signcolumn = "no"
+	vim.cmd("startinsert")
+end, { desc = 'Open Claude in vertical split' })
+
+-- Exit insert mode in terminal with kk
 keymap.set("t", "kk", "<C-\\><C-n>")
+
+-- Yank lines and paths
+vim.keymap.set('n', '<leader>ya', function()
+  yank.yank_path(yank.get_buffer_absolute(), 'absolute')
+end, { desc = '[Y]ank [A]bsolute path to clipboard' })
+
+vim.keymap.set('n', '<leader>yr', function()
+  yank.yank_path(yank.get_buffer_cwd_relative(), 'relative')
+end, { desc = '[Y]ank [R]elative path to clipboard' })
+
+vim.keymap.set('v', '<leader>ya', function()
+  yank.yank_visual_with_path(yank.get_buffer_absolute(), 'absolute')
+end, { desc = '[Y]ank selection with [A]bsolute path' })
+
+vim.keymap.set('v', '<leader>yr', function()
+  yank.yank_visual_with_path(yank.get_buffer_cwd_relative(), 'relative')
+end, { desc = '[Y]ank selection with [R]elative path' })
