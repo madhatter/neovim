@@ -31,7 +31,7 @@ mason_lspconfig.setup({
 		"lua_ls",
 		"pyright",
 		"yamlls",
-		"kotlin_language_server",
+		"kotlin_lsp",
 	},
 	auto_install = true,
 	automatic_enable = false,
