@@ -43,6 +43,7 @@
   "promise-async": { "branch": "main", "commit": "119e8961014c9bfaf1487bf3c2a393d254f337e2" },
   "smooth-resize.nvim": { "branch": "main", "commit": "5218aedc1dedb9c0c0f105b73f46e601f712a786" },
   "snacks.nvim": { "branch": "main", "commit": "fe7cfe9800a182274d0f868a74b7263b8c0c020b" },
+  "spotui-nvim": { "branch": "main", "commit": "7d41b4fcec8f3f31d778b2bdfa158326392e8dfa" },
   "telescope.nvim": { "branch": "master", "commit": "5255aa27c422de944791318024167ad5d40aad20" },
   "triforce.nvim": { "branch": "main", "commit": "420208f9942cf644c8c9b5f41988432a31746a7b" },
   "vim-test": { "branch": "master", "commit": "c174652ef8e4959628a52e3134f102923b7a6f0d" },

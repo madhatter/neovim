@@ -47,4 +47,20 @@ return {
 	},
 	"eandrju/cellular-automaton.nvim",
 	{ "wakatime/vim-wakatime", lazy = false },
+	--- SpotifyUI
+	{
+		"AaravB23/spotui-nvim",
+		config = function()
+			require("spotui").setup({
+				position = "bottom-left",
+				poll_interval = 1000,
+				window = {
+					width = 30,
+					expanded_height = 16,
+					compact_height = 8,
+					expand_duration = 4500,
+				},
+			})
+		end,
+	},
 }

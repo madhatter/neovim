@@ -25,7 +25,7 @@ return {
 					}
 				end,
 			})
-			vim.cmd("colorscheme kanagawa-dragon") -- 2. Farbenchema setzen
+			vim.cmd.colorscheme('kanagawa-dragon') -- 2. Farbenchema setzen
 		end,
 	},
 	-- welcome screen
