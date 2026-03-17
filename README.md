@@ -53,6 +53,8 @@ lua/
   custom/
     directory-watcher.lua   # libuv-based FS watcher with debounce
     hotreload.lua           # Auto-reload buffers when files change externally
+    kotlin.lua              # jar:// URI handler and custom gd for kotlin-lsp
+    yank.lua                # Helpers to yank file path and selected code with line range
 after/
   plugin/                   # Post-plugin setup, numbered for load order
     01-mason.rc.lua         # LSP server list
@@ -173,6 +175,10 @@ Languages configured out of the box: **Go, Python, Lua, TypeScript, Kotlin, Rust
 **`lua/custom/directory-watcher.lua`** — A `vim.uv` fs_event wrapper with named handler registration and configurable debounce (default 100ms). Started in `init.lua` only when Neovim is opened to a directory.
 
 **`lua/custom/hotreload.lua`** — Registers with the directory watcher and also attaches autocmds (`FocusGained`, `TermLeave`, `BufEnter`, etc.) to silently reload unmodified buffers when their files change on disk. Useful when editing files with external tools (formatters, generators) running alongside Neovim.
+
+**`lua/custom/kotlin.lua`** — Handles `jar://` URIs returned by kotlin-lsp for external dependency navigation. Extracts files from JARs, caches them under `stdpath("cache")/kotlin-jar-sources/`, and provides a custom `go_to_definition` that rewrites jar URIs before navigating — bypassing handlers that don't support this URI scheme.
+
+**`lua/custom/yank.lua`** — Helpers for copying file context to the clipboard. Yanks the current file path (absolute or cwd-relative) or a visual selection together with its path and line range in `path:start-end\n\ncode` format — useful for pasting code into AI tools. Sourced from [richardgill/nix](https://github.com/richardgill/nix).
 
 ---
 
