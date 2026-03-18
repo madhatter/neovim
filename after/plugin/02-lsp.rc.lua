@@ -21,7 +21,6 @@ vim.diagnostic.config({
 	},
 })
 
-
 -- ============================================================================
 -- LSP KEYMAPS (on attach)
 -- ============================================================================
@@ -48,7 +47,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			require("fzf-lua").lsp_definitions,
 			vim.tbl_extend("force", opts, { desc = "Definition" })
 		)
-    -- Override gd for Kotlin to handle jar:// URIs
+		-- Override gd for Kotlin to handle jar:// URIs
 		if vim.bo[ev.buf].filetype == "kotlin" then
 			vim.keymap.set("n", "gd", kotlin.go_to_definition, vim.tbl_extend("force", opts, { desc = "Definition" }))
 		end
@@ -181,6 +180,10 @@ local lsp_servers = {
 	kotlin_lsp = {
 		single_file_support = false,
 	},
+	bashls = {
+		filetypes = { "sh", "bash", "zsh" },
+		settings = {},
+	},
 	pyright = {
 		settings = {},
 	},
@@ -247,4 +250,3 @@ for server, config in pairs(lsp_servers) do
 	)
 	vim.lsp.enable(server)
 end
-

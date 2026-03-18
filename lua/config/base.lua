@@ -81,6 +81,9 @@ opt.conceallevel = 1
 -- change the colorscheme here
 --vim.cmd("colorscheme kanagawa-dragon")
 
+-- set the lsp log level to warn to avoid filling up the log with too much info
+vim.lsp.set_log_level("warn")
+
 -- Show LSP loading progress
 vim.lsp.handlers['$/progress'] = function(_, progress, ctx)
   local client = vim.lsp.get_client_by_id(ctx.client_id)

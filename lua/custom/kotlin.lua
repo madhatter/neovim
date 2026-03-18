@@ -33,7 +33,8 @@ end
 -- both of which don't handle jar:// URIs. Makes the LSP request directly,
 -- rewrites jar:// URIs if needed, then navigates manually.
 function M.go_to_definition()
-	local params = vim.lsp.util.make_position_params()
+	local client = vim.lsp.get_clients({ bufnr = 0 })[1]
+	local params = vim.lsp.util.make_position_params(0, client and client.offset_encoding or "utf-16")
 	vim.lsp.buf_request(0, "textDocument/definition", params, function(err, result)
 		if err or not result then
 			return
