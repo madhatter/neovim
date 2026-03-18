@@ -1,6 +1,28 @@
 local status, lualine = pcall(require, 'lualine')
 if (not status) then return end
 
+local lsp = {
+    function()
+        local msg = 'No LSP'
+        local buf_ft = vim.api.nvim_get_option_value('filetype', { buf = 0 })
+        local clients = vim.lsp.get_clients()
+        if next(clients) == nil then
+            return msg
+        end
+        for _, client in ipairs(clients) do
+            local filetypes = client.config and client.config.filetypes or nil
+            if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+                return client.name
+            end
+        end
+        return msg
+    end,
+    --icon = icons.ui.Gear,
+    icon = '',
+    -- use palenight blue color and make the font not bold for a more subtle look
+    --color = { fg = '#82aaff', gui = 'none' },
+}
+
 lualine.setup {
     options = {
         icons_enabled = true,
@@ -24,6 +46,7 @@ lualine.setup {
         } },
         lualine_x = {
             { 'diagnostics', sources = { 'nvim_diagnostic' }, symbols = { error = ' ', warn = ' ', info = ' ' } },
+            lsp,
             'encoding',
             'filetype'
         },
