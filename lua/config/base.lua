@@ -10,6 +10,7 @@ end
 
 opt.relativenumber = true
 opt.number = true -- show the line number of the current line
+opt.statuscolumn = "%C%=%{v:relnum?v:relnum:v:lnum} " -- fold column left, numbers right-aligned
 
 opt.title = true
 opt.autoindent = true

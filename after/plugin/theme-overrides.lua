@@ -41,6 +41,9 @@ vim.api.nvim_set_hl(0, "@variable.builtin", { fg = orange })
 -- vim.api.nvim_set_hl(0, "@string", { fg = "#98971a" })
 
 -- UI chrome: subtle borders, separators and popups to match the muted Reddit look
+vim.api.nvim_set_hl(0, "SignColumn",    { bg = p.base01 })
+vim.api.nvim_set_hl(0, "LineNr",       { bg = p.base01, fg = p.base03 })
+vim.api.nvim_set_hl(0, "CursorLineNr", { bg = p.base01, fg = p.base04 })
 vim.api.nvim_set_hl(0, "FloatBorder",   { fg = subtle, bg = p.base00 })
 vim.api.nvim_set_hl(0, "WinSeparator",  { fg = subtle })
 vim.api.nvim_set_hl(0, "CursorLine",    { bg = p.base01 })
