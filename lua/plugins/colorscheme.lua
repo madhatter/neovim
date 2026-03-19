@@ -1,31 +1,30 @@
 return {
 	{
-		"rebelot/kanagawa.nvim",
-		lazy = false, -- Load on startup
-		priority = 1000, -- High priority to load this colorscheme first
+		-- Replicates NvChad's base46 gruvbox theme without requiring NvChad.
+		-- The 16 base colors are taken directly from:
+		-- https://github.com/NvChad/base46/blob/v2.0/lua/base46/themes/gruvbox.lua
+		"RRethy/nvim-base16",
+		lazy = false,
+		priority = 1000,
 		config = function()
-			-- 1. Konfiguration (Setup)
-			require("kanagawa").setup({
-				theme = "dragon", -- Chosen theme variant, does not seem to matter if set to kanagawa later
-				overrides = function(colors)
-					local palette = colors.palette
-					local theme = colors.theme
-					return {
-						--Pmenu = { bg = palette.sumiInk0 },
-						Pmenu = {
-							bg = palette.sumiInk0,
-							--fg = "#DCDCDC",
-              fg = palette.dragonWhite,
-						},
-						--FloatBorder = { fg = palette.oldWhite, bg = palette.sumiInk0 },
-						FloatBorder = { fg = "#54546D", bg = palette.sumiInk0 },
-
-						--PmenuSel = { bg = palette.waveBlue2, fg = palette.oldWhite, bold = true },
-						PmenuSel = { bg = palette.waveBlue2, fg = palette.oldWhite, bold = true },
-					}
-				end,
+			require("base16-colorscheme").setup({
+				base00 = "#282828", -- background
+				base01 = "#3c3836", -- lighter background
+				base02 = "#504945", -- selection background
+				base03 = "#665c54", -- comments
+				base04 = "#bdae93", -- dark foreground
+				base05 = "#d5c4a1", -- default foreground
+				base06 = "#ebdbb2", -- light foreground
+				base07 = "#fbf1c7", -- lightest foreground
+				base08 = "#fb4934", -- red (errors, deletes)
+				base09 = "#fe8019", -- orange
+				base0A = "#fabd2f", -- yellow (keywords)
+				base0B = "#b8bb26", -- green (strings)
+				base0C = "#8ec07c", -- cyan
+				base0D = "#83a598", -- blue (functions)
+				base0E = "#d3869b", -- purple
+				base0F = "#d65d0e", -- dark orange
 			})
-			vim.cmd.colorscheme('kanagawa-dragon') -- 2. Farbenchema setzen
 		end,
 	},
 	-- welcome screen
