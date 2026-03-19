@@ -7,6 +7,7 @@ local yellow = p.yellow
 local orange = p.orange
 local fg     = p.fg
 local purple = p.purple
+local subtle = p.base02 -- used for borders and separators
 
 -- Keywords: yellow instead of purple
 vim.api.nvim_set_hl(0, "@keyword",          { fg = yellow })
@@ -38,6 +39,23 @@ vim.api.nvim_set_hl(0, "@variable.builtin", { fg = orange })
 
 -- Strings: muted yellow-green instead of neon yellow-green
 -- vim.api.nvim_set_hl(0, "@string", { fg = "#98971a" })
+
+-- UI chrome: subtle borders, separators and popups to match the muted Reddit look
+vim.api.nvim_set_hl(0, "FloatBorder",   { fg = subtle, bg = p.base00 })
+vim.api.nvim_set_hl(0, "WinSeparator",  { fg = subtle })
+vim.api.nvim_set_hl(0, "CursorLine",    { bg = p.base01 })
+vim.api.nvim_set_hl(0, "NormalFloat",    { bg = p.base00, fg = p.fg })
+vim.api.nvim_set_hl(0, "Pmenu",         { bg = p.base00, fg = p.fg })
+vim.api.nvim_set_hl(0, "PmenuSel",      { bg = p.base02, fg = p.fg, bold = true })
+vim.api.nvim_set_hl(0, "PmenuKind",              { bg = p.base00 })
+vim.api.nvim_set_hl(0, "PmenuKindSel",           { bg = p.base02 })
+vim.api.nvim_set_hl(0, "PmenuExtra",             { bg = p.base00, fg = p.base03 })
+vim.api.nvim_set_hl(0, "PmenuExtraSel",          { bg = p.base02 })
+vim.api.nvim_set_hl(0, "CmpItemAbbr",            { bg = "NONE", fg = p.fg })
+vim.api.nvim_set_hl(0, "CmpItemAbbrMatch",       { bg = "NONE", fg = p.yellow, bold = true })
+vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy",  { bg = "NONE", fg = p.orange })
+vim.api.nvim_set_hl(0, "CmpItemKind",            { bg = "NONE" })
+vim.api.nvim_set_hl(0, "CmpItemMenu",            { bg = "NONE", fg = p.base03 })
 
 -- LSP semantic token overrides: mirror the TreeSitter assignments above.
 -- LSP tokens run after TreeSitter and would otherwise silently override them.
