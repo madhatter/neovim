@@ -7,24 +7,7 @@ return {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			require("base16-colorscheme").setup({
-				base00 = "#282828", -- background
-				base01 = "#3c3836", -- lighter background
-				base02 = "#504945", -- selection background
-				base03 = "#665c54", -- comments
-				base04 = "#bdae93", -- dark foreground
-				base05 = "#d5c4a1", -- default foreground
-				base06 = "#ebdbb2", -- light foreground
-				base07 = "#fbf1c7", -- lightest foreground
-				base08 = "#fb4934", -- red (errors, deletes)
-				base09 = "#fe8019", -- orange
-				base0A = "#fabd2f", -- yellow (keywords)
-				base0B = "#b8bb26", -- green (strings)
-				base0C = "#8ec07c", -- cyan
-				base0D = "#83a598", -- blue (functions)
-				base0E = "#d3869b", -- purple
-				base0F = "#d65d0e", -- dark orange
-			})
+			require("base16-colorscheme").setup(require("config.palette"))
 		end,
 	},
 	-- welcome screen

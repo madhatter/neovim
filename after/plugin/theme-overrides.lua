@@ -2,10 +2,11 @@
 -- Shifts keywords and types from purple (base0E) to yellow (base0A),
 -- which gives the characteristic warm, 70s feel of the NvChad theme.
 
-local yellow = "#fabd2f"
-local orange = "#fe8019"
-local fg     = "#d5c4a1"
-local purple = "#d3869b"
+local p      = require("config.palette")
+local yellow = p.yellow
+local orange = p.orange
+local fg     = p.fg
+local purple = p.purple
 
 -- Keywords: yellow instead of purple
 vim.api.nvim_set_hl(0, "@keyword",          { fg = yellow })
