@@ -1,10 +1,14 @@
 local status, lualine = pcall(require, 'lualine')
 if (not status) then return end
 
+local theme = require('lualine.themes.gruvbox')
+theme.insert.a.bg = '#d3869b' -- pink/purple (base0E) instead of blue
+theme.insert.a.fg = '#282828'
+
 lualine.setup {
     options = {
         icons_enabled = true,
-        theme = 'palenight',
+        theme = theme,
         section_separators = { left = '', right = '' },
         component_separators = { left = '', right = '' },
         disabled_filetypes = {},
