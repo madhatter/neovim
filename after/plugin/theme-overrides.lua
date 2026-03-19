@@ -20,3 +20,6 @@ vim.api.nvim_set_hl(0, "@type.builtin", { fg = yellow })
 -- Properties and fields: yellow
 vim.api.nvim_set_hl(0, "@variable.member", { fg = yellow })
 vim.api.nvim_set_hl(0, "@property",        { fg = yellow })
+
+-- Strings: muted yellow-green instead of neon yellow-green
+-- vim.api.nvim_set_hl(0, "@string", { fg = "#98971a" })
