@@ -22,6 +22,13 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   group = format_sync_grp,
 })
 
+-- Hide winbar (dropbar) in terminal buffers
+vim.api.nvim_create_autocmd("TermOpen", {
+    callback = function()
+        vim.wo.winbar = ""
+    end,
+})
+
 -- Use yaml.ansible for yaml files in ansible directory
 vim.filetype.add({
   pattern = {

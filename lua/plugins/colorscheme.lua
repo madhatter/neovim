@@ -1,31 +1,13 @@
 return {
 	{
-		"rebelot/kanagawa.nvim",
-		lazy = false, -- Load on startup
-		priority = 1000, -- High priority to load this colorscheme first
+		-- Replicates NvChad's base46 gruvbox theme without requiring NvChad.
+		-- The 16 base colors are taken directly from:
+		-- https://github.com/NvChad/base46/blob/v2.0/lua/base46/themes/gruvbox.lua
+		"RRethy/nvim-base16",
+		lazy = false,
+		priority = 1000,
 		config = function()
-			-- 1. Konfiguration (Setup)
-			require("kanagawa").setup({
-				theme = "dragon", -- Chosen theme variant, does not seem to matter if set to kanagawa later
-				overrides = function(colors)
-					local palette = colors.palette
-					local theme = colors.theme
-					return {
-						--Pmenu = { bg = palette.sumiInk0 },
-						Pmenu = {
-							bg = palette.sumiInk0,
-							--fg = "#DCDCDC",
-              fg = palette.dragonWhite,
-						},
-						--FloatBorder = { fg = palette.oldWhite, bg = palette.sumiInk0 },
-						FloatBorder = { fg = "#54546D", bg = palette.sumiInk0 },
-
-						--PmenuSel = { bg = palette.waveBlue2, fg = palette.oldWhite, bold = true },
-						PmenuSel = { bg = palette.waveBlue2, fg = palette.oldWhite, bold = true },
-					}
-				end,
-			})
-			vim.cmd.colorscheme('kanagawa-dragon') -- 2. Farbenchema setzen
+			require("base16-colorscheme").setup(require("config.palette"))
 		end,
 	},
 	-- welcome screen
