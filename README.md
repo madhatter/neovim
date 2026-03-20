@@ -6,6 +6,12 @@ No big frameworks. No magic. Just a well-understood set of plugins wired togethe
 
 > **Warning:** This is a personal configuration. Use it as inspiration rather than copying it wholesale — some paths (e.g. Python binary) are hardcoded for macOS/Homebrew.
 
+<p align="center">
+  <a href=".assets/screenshot_gruvbox_clone.png">
+    <img src=".assets/screenshot_gruvbox_clone.png" width="600" alt="Neovim setup screenshot" />
+  </a>
+</p>
+
 ---
 
 ## Requirements
