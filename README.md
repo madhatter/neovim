@@ -48,6 +48,7 @@ lua/
     maps.lua                # All keymaps
     autocmd.lua             # Autocommands
     highlights.lua          # Colors and display
+    palette.lua             # Single source of truth for all theme colors
     lazy.lua                # Plugin manager bootstrap
   plugins/                  # One file per plugin/group — auto-discovered by lazy.nvim
   custom/
@@ -61,6 +62,7 @@ after/
     02-lsp.rc.lua           # LSP keybindings and per-server config
     03-nvim-cmp.rc.lua      # Completion setup
     lualine.rc.lua          # Status line
+    theme-overrides.lua     # TreeSitter/LSP highlight overrides for gruvbox look
   ftplugin/                 # Per-filetype overrides (go, python)
 ```
 
@@ -73,10 +75,11 @@ The `after/plugin/` files are numbered (`01-`, `02-`, `03-`) to enforce load ord
 ### Editor
 
 - **Leader key:** `;`
-- **Colorscheme:** [kanagawa.nvim](https://github.com/rebelot/kanagawa.nvim) (Dragon variant)
+- **Colorscheme:** [nvim-base16](https://github.com/RRethy/nvim-base16) with NvChad's gruvbox palette — replicates the NvChad base46 gruvbox look without requiring NvChad
 - **Fuzzy finding:** [fzf-lua](https://github.com/ibhagwan/fzf-lua) — files, oldfiles, buffers, live grep; custom DuckDB parquet preview
 - **File tree:** [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) (`<F5>`)
-- **Folding:** [nvim-ufo](https://github.com/kevinhwang91/promise-async) with treesitter + indent providers
+- **Breadcrumbs:** [dropbar.nvim](https://github.com/Bekaboo/dropbar.nvim) — per-segment winbar with file/symbol context and icons
+- **Folding:** [nvim-ufo](https://github.com/kevinhwang91/promise-async) with treesitter + indent providers; `<Space>` to toggle
 - **Welcome screen:** [alpha-nvim](https://github.com/goolord/alpha-nvim) with Figlet ASCII banners
 
 ### LSP & Completion
@@ -126,6 +129,7 @@ Languages configured out of the box: **Go, Python, Lua, TypeScript, Kotlin, Rust
 | `<leader>h` | Recent files |
 | `<leader>b` | Open buffers |
 | `<F5>` | Toggle file tree (Neo-tree) |
+| `<Space>` | Toggle fold |
 | `<C-h/j/k/l>` | Navigate windows/tmux panes |
 | `te` / `ss` / `sv` | New tab / horizontal split / vertical split |
 
