@@ -76,3 +76,13 @@ vim.api.nvim_set_hl(0, "WinBarNC",    { bg = p.base01, fg = p.base03 })
 
 -- Warning messages: yellow instead of red to avoid error association
 vim.api.nvim_set_hl(0, "WarningMsg",  { fg = p.yellow })
+
+-- Markdown inline code: muted yellow
+vim.api.nvim_set_hl(0, "@markup.raw",        { fg = p.yellow })
+vim.api.nvim_set_hl(0, "@markup.raw.block",  { fg = p.yellow })
+vim.api.nvim_set_hl(0, "@text.literal",      { fg = p.yellow })
+
+-- Markdown link labels: muted yellow-green
+vim.api.nvim_set_hl(0, "@markup.link",       { fg = "#98971a" })
+vim.api.nvim_set_hl(0, "@markup.link.label", { fg = "#98971a" })
+vim.api.nvim_set_hl(0, "@text.reference",    { fg = "#98971a" })
