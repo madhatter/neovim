@@ -69,3 +69,10 @@ vim.api.nvim_set_hl(0, "@lsp.type.type",      { fg = yellow })
 vim.api.nvim_set_hl(0, "@lsp.type.class",     { fg = yellow })
 vim.api.nvim_set_hl(0, "@lsp.type.interface", { fg = yellow })
 vim.api.nvim_set_hl(0, "@lsp.type.enum",      { fg = yellow })
+
+-- Winbar (breadcrumbs via dropbar.nvim)
+vim.api.nvim_set_hl(0, "WinBar",      { bg = p.base01, fg = p.fg })
+vim.api.nvim_set_hl(0, "WinBarNC",    { bg = p.base01, fg = p.base03 })
+
+-- Warning messages: yellow instead of red to avoid error association
+vim.api.nvim_set_hl(0, "WarningMsg",  { fg = p.yellow })
