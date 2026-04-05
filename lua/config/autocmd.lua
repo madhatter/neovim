@@ -1,3 +1,11 @@
+-- Disable built-in treesitter highlighter for markdown (compatibility with obsidian.nvim)
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function(args)
+    vim.treesitter.stop(args.buf)
+  end,
+})
+
 -- Set textwidth for markdown files
 vim.api.nvim_create_autocmd(
   {
@@ -34,4 +42,12 @@ vim.filetype.add({
   pattern = {
     [".*/ansible/.*/*%.ya?ml"] = "yaml.ansible",
   },
+})
+
+-- Kill kotlin-lsp proxy on exit (pre-alpha bug: proxy doesn't clean up on shutdown)
+vim.api.nvim_create_autocmd("VimLeavePre", {
+    callback = function()
+        vim.fn.jobstart("pkill -f kotlin-lsp", { detach = true })
+        vim.fn.delete(vim.fn.expand("~/Library/Caches/kotlin-lsp-proxy"), "rf")
+    end,
 })
