@@ -34,6 +34,8 @@ return {
 				html = { "prettier" },
 				json = { "prettier" },
 				css = { "prettier" },
+				c = { "clang_format" },
+				cpp = { "clang_format" },
 				javascript = { "prettierd", "prettier", stop_after_first = true },
 				kotlin = { "ktfmt" },
 				go = { "gofmt" },
