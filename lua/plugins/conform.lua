@@ -32,6 +32,7 @@ return {
 				rust = { "rustfmt", lsp_format = "fallback" },
 				-- Conform will run the first available formatter
 				html = { "prettier" },
+				json = { "prettier" },
 				css = { "prettier" },
 				javascript = { "prettierd", "prettier", stop_after_first = true },
 				kotlin = { "ktfmt" },
