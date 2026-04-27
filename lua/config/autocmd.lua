@@ -42,6 +42,9 @@ vim.filetype.add({
   pattern = {
     [".*/ansible/.*/*%.ya?ml"] = "yaml.ansible",
   },
+  extension = {
+    j2 = "jinja",
+  },
 })
 
 -- Kill kotlin-lsp proxy on exit (pre-alpha bug: proxy doesn't clean up on shutdown)
