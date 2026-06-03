@@ -40,6 +40,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(ev)
 		local opts = { buffer = ev.buf }
 
+		-- Enable inlay hints if the server supports them
+		local client = vim.lsp.get_client_by_id(ev.data.client_id)
+		if client and client.supports_method("textDocument/inlayHint") then
+			vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
+		end
 
 		-- Navigation
 		vim.keymap.set(
@@ -48,9 +53,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			require("fzf-lua").lsp_definitions,
 			vim.tbl_extend("force", opts, { desc = "Definition" })
 		)
-		-- Override gd for Kotlin to handle jar:// URIs
+		-- Kotlin-specific overrides
 		if vim.bo[ev.buf].filetype == "kotlin" then
+			-- gd: handle jar:// URIs that fzf-lua can't open
 			vim.keymap.set("n", "gd", kotlin.go_to_definition, vim.tbl_extend("force", opts, { desc = "Definition" }))
+			-- ca: kotlin-lsp indexes slowly; use native code_action with longer timeout
+			vim.keymap.set({ "n", "v" }, "<leader>ca", function()
+				vim.lsp.buf.code_action({ timeout_ms = 5000 })
+			end, vim.tbl_extend("force", opts, { desc = "Code actions (Kotlin)" }))
 		end
 		vim.keymap.set(
 			"n",
