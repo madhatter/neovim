@@ -32,6 +32,7 @@ mason_lspconfig.setup({
 		"pyright",
 		"yamlls",
 		"kotlin_lsp",
+		"rust_analyzer",
 	},
 	auto_install = true,
 	automatic_enable = false,
