@@ -66,14 +66,12 @@ opt.foldenable = true
 
 opt.tags="tags;/"
 
--- set refresh times to prevent lag on external display
-vim.opt.updatetime = 100 -- faster completion, might help for lualine ui refresh
-vim.opt.timeoutlen = 300 -- waiting time for a mapped sequence to complete (in milliseconds)
-vim.opt.ttimeoutlen = 10 -- waiting time for escape sequences to complete (in milliseconds)
+-- timings (in milliseconds)
+vim.opt.updatetime = 250 -- idle time for CursorHold and swap file writes
+vim.opt.timeoutlen = 600 -- time to complete a mapped sequence like ;dd
+vim.opt.ttimeoutlen = 10 -- time to complete terminal escape sequences
 
--- experimental settings for an even better performance.
-vim.opt.lazyredraw = false -- might be better on modern GPUs
-vim.opt.synmaxcol = 240 -- faster syntax highlighting for long lines
+vim.opt.synmaxcol = 240 -- only affects regex syntax, not treesitter
 
 -- set conceallevel for obsidian plugin
 -- each block of concealed text is replaced with one character

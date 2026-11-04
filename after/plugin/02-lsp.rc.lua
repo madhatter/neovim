@@ -19,6 +19,14 @@ vim.diagnostic.config({
 		prefix = "",
 		winhighlight = "Normal:Pmenu,FloatBorder:FloatBorder,CursorLine:PmenuSel,NormalFloat:Pmenu",
 	},
+	-- Show a popup after jumping with the built-in ]d, [d, ]D and [D
+	jump = {
+		on_jump = function(diagnostic, bufnr)
+			if diagnostic then
+				vim.diagnostic.open_float({ bufnr = bufnr, scope = "cursor", focus = false })
+			end
+		end,
+	},
 })
 
 -- ============================================================================
@@ -104,9 +112,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			require("fzf-lua").lsp_code_actions()
 		end, vim.tbl_extend("force", opts, { desc = "Code actions" }))
 
-		-- Diagnostics
-		vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-		vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+		-- Diagnostics ([d and ]d are Neovim defaults, popup via diagnostic.config jump)
 		vim.keymap.set(
 			"n",
 			"<leader>dd",
