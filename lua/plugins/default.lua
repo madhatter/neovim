@@ -46,7 +46,6 @@ return {
 		lazy = false,
 	},
 	"eandrju/cellular-automaton.nvim",
-	{ "wakatime/vim-wakatime", lazy = false },
 	--- SpotifyUI
 	{
 		"AaravB23/spotui-nvim",

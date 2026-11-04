@@ -41,7 +41,7 @@ return {
 					kotlin = true,
 					javascript = true,
 					typescript = true,
-					golang = true,
+					go = true,
 					python = true,
 					gitcommit = false,
 					gitrebase = false,
