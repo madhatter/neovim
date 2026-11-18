@@ -9,6 +9,22 @@ local quiet_ms = 3000
 local active = {}
 -- done[client_id] = { title, at } of the last finished task
 local done = {}
+-- notified[client_id] = true once the ready notification was shown
+local notified = {}
+
+-- Notify once per client when it becomes ready for the first time
+local function notify_ready(client_id)
+	local last = done[client_id]
+	if notified[client_id] or not last or next(active[client_id] or {}) ~= nil then
+		return
+	end
+	if vim.uv.now() - last.at < quiet_ms then
+		return
+	end
+	notified[client_id] = true
+	local client = vim.lsp.get_client_by_id(client_id)
+	vim.notify(("LSP [%s] ready"):format(client and client.name or client_id))
+end
 
 -- Escape '%' so server messages can't break the statusline expression
 local function escape(text)
@@ -36,6 +52,7 @@ function M.setup()
 				-- Redraw once the quiet period is over to show the ready state
 				vim.defer_fn(function()
 					vim.cmd.redrawstatus()
+					notify_ready(client_id)
 				end, quiet_ms + 100)
 			else
 				active[client_id][params.token] = {
