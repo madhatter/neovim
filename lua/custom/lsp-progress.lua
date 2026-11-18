@@ -4,6 +4,8 @@ local M = {}
 local max_message_length = 40
 -- Idle time after the last task before a client counts as ready
 local quiet_ms = 3000
+-- Clients that never report progress and would always show as pending
+local ignored = { copilot = true }
 
 -- active[client_id][token] = { title, message, percentage, updated }
 local active = {}
@@ -70,7 +72,10 @@ end
 -- Statusline text for clients attached to the current buffer
 function M.status()
 	local parts = {}
-	for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
+	local clients = vim.tbl_filter(function(c)
+		return not ignored[c.name]
+	end, vim.lsp.get_clients({ bufnr = 0 }))
+	for _, client in ipairs(clients) do
 		local count, latest = 0, nil
 		for _, task in pairs(active[client.id] or {}) do
 			count = count + 1
