@@ -83,19 +83,6 @@ opt.conceallevel = 1
 -- set the lsp log level to warn to avoid filling up the log with too much info
 vim.lsp.log.set_level("warn")
 
--- Show LSP loading progress
-vim.lsp.handlers['$/progress'] = function(_, progress, ctx)
-  local client = vim.lsp.get_client_by_id(ctx.client_id)
-  local client_name = client and client.name or "Unknown"
-  local val = progress.value
-  if val.kind then
-    if val.kind == 'begin' then
-      vim.notify('LSP [' .. client_name .. ']: ' .. (val.title or ''))
-    elseif val.kind == 'report' then
-      vim.notify('LSP [' .. client_name .. ']: ' .. (val.message or ''))
-    elseif val.kind == 'end' then
-      vim.notify('LSP [' .. client_name .. ']: ' .. (val.message or 'Completed'))
-    end
-  end
-end
+-- Track LSP progress for the statusline (see lua/custom/lsp-progress.lua)
+require("custom.lsp-progress").setup()
 

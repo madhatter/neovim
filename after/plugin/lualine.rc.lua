@@ -28,6 +28,7 @@ lualine.setup {
             path = 0 -- 0 = just the filename
         } },
         lualine_x = {
+            { require('custom.lsp-progress').status },
             { 'diagnostics', sources = { 'nvim_diagnostic' }, symbols = { error = ' ', warn = ' ', info = ' ' } },
             'encoding',
             'filetype'
