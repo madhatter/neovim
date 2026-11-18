@@ -48,23 +48,6 @@ function M.setup()
 			vim.cmd.redrawstatus()
 		end,
 	})
-
-	vim.api.nvim_create_autocmd("LspDetach", {
-		group = group,
-		callback = function(ev)
-			-- Only forget the client once it's detached from all buffers
-			local client = vim.lsp.get_client_by_id(ev.data.client_id)
-			if client then
-				for bufnr in pairs(client.attached_buffers) do
-					if bufnr ~= ev.buf then
-						return
-					end
-				end
-			end
-			active[ev.data.client_id] = nil
-			done[ev.data.client_id] = nil
-		end,
-	})
 end
 
 -- Statusline text for clients attached to the current buffer
