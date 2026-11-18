@@ -196,6 +196,11 @@ local lsp_servers = {
 	},
 	kotlin_lsp = {
 		single_file_support = false,
+		-- Prefer the Gradle settings file so submodules share the project root
+		root_markers = {
+			{ "settings.gradle", "settings.gradle.kts" },
+			{ "pom.xml", "build.gradle", "build.gradle.kts", "workspace.json" },
+		},
 	},
 	bashls = {
 		filetypes = { "sh", "bash", "zsh" },
@@ -266,4 +271,20 @@ for server, config in pairs(lsp_servers) do
 		}, config)
 	)
 	vim.lsp.enable(server)
+end
+
+-- Pre-start kotlin_lsp when nvim is opened to a Kotlin project directory,
+-- so indexing runs before the first .kt file is opened
+if IS_OPENED_TO_DIR then
+	vim.api.nvim_create_autocmd("VimEnter", {
+		once = true,
+		callback = function()
+			local config = vim.lsp.config.kotlin_lsp
+			local root = vim.fs.root(vim.fn.fnamemodify(vim.v.argv[3], ":p"), config.root_markers)
+			if not root then
+				return
+			end
+			vim.lsp.start(vim.tbl_extend("force", config, { root_dir = root }), { attach = false })
+		end,
+	})
 end
