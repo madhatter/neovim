@@ -49,7 +49,30 @@ require('custom.directory-watcher').registerOnChangeHandler('hotreload', functio
   end
 end)
 
+-- Polling fallback: the directory watcher is non-recursive (libuv only supports
+-- recursive watching on macOS/Windows), so changes in subdirectories, or when
+-- nvim was opened with a file instead of a directory, would otherwise only show
+-- up on focus/buffer events. checktime only stats the files, so this is cheap.
+local poll_timer = nil
+
 M.setup = function(opts)
+  opts = opts or {}
+  local interval = opts.interval or 1000 -- ms, 0 disables polling
+
+  if poll_timer then
+    poll_timer:stop()
+    poll_timer:close()
+    poll_timer = nil
+  end
+  if interval > 0 then
+    poll_timer = vim.uv.new_timer()
+    poll_timer:start(interval, interval, vim.schedule_wrap(function()
+      if should_check() then
+        vim.cmd 'silent! checktime'
+      end
+    end))
+  end
+
   vim.api.nvim_create_autocmd({ 'FocusGained', 'TermLeave', 'BufEnter', 'WinEnter', 'CursorHold', 'CursorHoldI' }, {
     group = vim.api.nvim_create_augroup('hotreload', { clear = true }),
     callback = function()

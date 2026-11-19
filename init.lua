@@ -13,7 +13,7 @@ if IS_OPENED_TO_DIR then
 end
 
 require('config/base')
-require 'custom.hotreload'
+require('custom.hotreload').setup()
 require('config/highlights')
 require('config/maps')
 require('config/autocmd')
