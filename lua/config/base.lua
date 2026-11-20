@@ -2,6 +2,9 @@ local opt = vim.opt
 
 vim.g.mapleader = ";"
 
+-- Ignore .editorconfig files in all projects
+vim.g.editorconfig = false
+
 vim.scriptencoding = "utf-8"
 opt.encoding = "utf-8"
 if vim.bo.modifiable then
