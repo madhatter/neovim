@@ -42,6 +42,23 @@ vim.api.nvim_set_hl(0, "@variable.builtin", { fg = orange })
 
 -- UI chrome: subtle borders, separators and popups to match the muted Reddit look
 vim.api.nvim_set_hl(0, "SignColumn",    { bg = p.base01 })
+-- Signs in the gutter: same background as SignColumn/LineNr
+local gutter = p.base01
+local signs = {
+  GitSignsAdd          = p.green,
+  GitSignsChange       = p.blue,
+  GitSignsChangedelete = p.blue,
+  GitSignsDelete       = p.red,
+  GitSignsTopdelete    = p.red,
+  GitSignsUntracked    = p.base03,
+  DiagnosticSignError  = p.red,
+  DiagnosticSignWarn   = p.yellow,
+  DiagnosticSignInfo   = p.blue,
+  DiagnosticSignHint   = p.cyan,
+}
+for group, color in pairs(signs) do
+  vim.api.nvim_set_hl(0, group, { fg = color, bg = gutter })
+end
 vim.api.nvim_set_hl(0, "LineNr",       { bg = p.base01, fg = p.base03 })
 vim.api.nvim_set_hl(0, "CursorLineNr", { bg = p.base01, fg = p.base04 })
 vim.api.nvim_set_hl(0, "FloatBorder",   { fg = subtle, bg = p.base00 })

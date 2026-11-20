@@ -20,6 +20,22 @@ return {
             vim.keymap.set(mode, l, r, opts)
           end
 
+          -- Jump between hunks; keep the built-in ]c/[c inside diff mode
+          map('n', ']c', function()
+            if vim.wo.diff then
+              vim.cmd.normal({ ']c', bang = true })
+            else
+              gs.nav_hunk('next')
+            end
+          end)
+          map('n', '[c', function()
+            if vim.wo.diff then
+              vim.cmd.normal({ '[c', bang = true })
+            else
+              gs.nav_hunk('prev')
+            end
+          end)
+
           map('n', '<leader>gs', gs.stage_hunk)
           map('n', '<leader>gr', gs.reset_hunk)
           map('n', '<leader>gS', gs.stage_buffer)
