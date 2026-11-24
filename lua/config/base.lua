@@ -15,6 +15,7 @@ opt.relativenumber = true
 opt.number = true -- show the line number of the current line
 opt.statuscolumn = "%C%s%=%{v:relnum?v:relnum:v:lnum} " -- folds column left, signs, numbers right-aligned
 opt.signcolumn = "yes"
+opt.winborder = "rounded" -- default border for floating windows
 
 opt.title = true
 opt.autoindent = true

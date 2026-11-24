@@ -18,7 +18,7 @@ return {
 
           -- Brightness multiplier (only used when char_insert/char_delete are nil)
           -- nil = auto-detect based on background (1.4 for dark, 0.92 for light)
-          char_brightness = nil,        -- Auto-adjust based on your colorscheme
+          char_brightness = 1.15,       -- Subtler than default 1.4 to keep comments readable
         },
 
         -- Diff view behavior
