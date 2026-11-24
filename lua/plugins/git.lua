@@ -11,6 +11,9 @@ return {
           changedelete = { text = '~' },
           untracked    = { text = '┆' },
         },
+        current_line_blame_opts = {
+          delay = 300,
+        },
         on_attach = function(bufnr)
           local gs = package.loaded.gitsigns
 
@@ -42,10 +45,13 @@ return {
           map('n', '<leader>gu', gs.undo_stage_hunk)
           map('n', '<leader>gp', gs.preview_hunk)
           map('n', '<leader>gb', function() gs.blame_line{full=true} end)
-          map('n', '<leader>tb', gs.toggle_current_line_blame)
+          map('n', '<leader>tb', function()
+            local on = gs.toggle_current_line_blame()
+            vim.notify('Line blame ' .. (on and 'on' or 'off'))
+          end)
           map('n', '<leader>gd', gs.diffthis)
           map('n', '<leader>gD', function() gs.diffthis('~') end)
-          map('n', '<leader>td', gs.toggle_deleted)
+          map('n', '<leader>td', gs.preview_hunk_inline)
         end
       })
     end
